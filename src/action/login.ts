@@ -4,38 +4,45 @@ import User from '../models/User'
  * We're defining every action in name constant here
  * Typescript's understand enum better
  */
-export enum ActionEnum{
-    LOGIN_WITH_FIREBASE = 'LOGIN_WITH_FIREBASE',
-    LOGIN_WITH_FIREBASE_SUCCESSFUL = 'LOGIN_WITH_FIREBASE_SUCCESSFUL',
-    ANONYMOUS = 'ANONYMOUS',
-    INCREMENT = 'INCREMENT'
+export enum ActionEnum {
+    LOGIN_WITH_FIREBASE,
+    LOGIN_WITH_FIREBASE_SUCCESSFUL,
+    ANONYMOUS,
+    INCREMENT
 }
 
 /**
  * Defining action type
  */
  
-export interface ILoginWithFirebase {
+export interface LoginWithFirebase {
     type: ActionEnum.LOGIN_WITH_FIREBASE,
     loginInfo: { email: string, password: string}
 }
 
-export interface ILoginWithFirebaseSuccessful{
+
+export interface LoginWithFirebaseSuccessful{
     type: ActionEnum.LOGIN_WITH_FIREBASE_SUCCESSFUL,
     user: User
 }
 
-export interface ILoginAnonymous {
+export interface LoginAnonymous {
     type: ActionEnum.ANONYMOUS,
     anonymousId: string
 }
 
 export interface Increment {
     type: ActionEnum.INCREMENT,
-    value: number
 }
+
+export function increaseValue() : Increment {
+    return {
+        type: ActionEnum.INCREMENT,
+    } as Increment
+}
+
 
 /**
  * Action will use in login reducer
  */
-export type Action = ILoginWithFirebase | ILoginWithFirebaseSuccessful | ILoginAnonymous | Increment
+export type Action = LoginWithFirebase | LoginWithFirebaseSuccessful | LoginAnonymous | Increment

@@ -33,14 +33,10 @@ export function reducer( state : IState = initialState, action: Action ){
             }
         }
 
-        case ActionEnum.LOGIN_WITH_FIREBASE_SUCCESSFUL: {
-
-        }
-
         case ActionEnum.INCREMENT: {
             return {
                 ...state,
-                value: action.value
+                value: state.value + 1
             }
         }
         
